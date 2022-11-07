@@ -1,9 +1,14 @@
-import adapter from "@sveltejs/adapter-static";
+import adapter from '@sveltejs/adapter-static';
+import * as carbon from 'carbon-preprocess-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
+  preprocess: carbon.presetCarbon(),
   kit: {
-    target: "#svelte",
+    target: '#svelte',
     adapter: adapter(),
+    vite: {
+      optimizeDeps: { include: ['clipboard-copy'] },
+    },
   },
 };
